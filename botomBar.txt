@@ -1,0 +1,73 @@
+// codigo del botombar
+// falta revisar como crjs hacer para que se conecten los botones con als pantallas
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun PantallaPrincipal() {
+
+    var itemSeleccionado by remember { mutableStateOf(0) }
+
+    val items = listOf(
+        "Inicio",
+        "Catálogo",
+        "Carrito",
+        "Favoritos",
+        "Perfil"
+    )
+
+    val iconos = listOf(
+        Icons.Default.Home,
+        Icons.Default.Call,
+        Icons.Default.ShoppingCart,
+        Icons.Default.Favorite,
+        Icons.Default.Person
+    )
+
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("Tech Store") }
+            )
+        },
+        bottomBar = {
+            NavigationBar {
+                items.forEachIndexed { index, item ->
+
+                    NavigationBarItem(
+                        selected = itemSeleccionado == index,
+                        onClick = {
+                            itemSeleccionado = index
+                        },
+                        icon = {
+                            Icon(
+                                imageVector = iconos[index],
+                                contentDescription = item
+                            )
+                        },
+                        label = {
+                            Text(text = item)
+                        }
+                    )
+                }
+            }
+        }
+    ) { innerPadding ->
+
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding),
+            contentAlignment = Alignment.Center
+        ) {
+            when (itemSeleccionado) {
+                0 -> Text("Pantalla de Inicio")
+                1 -> Text("Pantalla de Catálogo")
+                2 -> Text("Pantalla de Carrito")
+                3 -> Text("Pantalla de Favoritos")
+                4 -> Text("Pantalla de Perfil")
+            }
+        }
+    }
+}
+
+

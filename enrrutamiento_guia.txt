@@ -1,0 +1,23 @@
+// GUIA PARA EL ENRRUTAMIENTO
+
+pe.edu.idat.appnavigationscreen
+├── MainActivity.kt
+├── navigation
+│   ├── AppNavigation.kt
+│   └── Routes.kt
+├── screens
+│   ├── LoginScreen.kt
+│   ├── MainScreen.kt
+│   ├── HomeScreen.kt
+│   ├── CategoriasScreen.kt
+│   ├── ProductosScreen.kt
+│   ├── CarritoScreen.kt
+│   └── PerfilScreen.kt
+├── components
+│   ├── ProductCard.kt
+│   └── BottomBar.kt
+├── model
+│   └── Producto.kt
+├── data
+│   └── ProductoData.kt
+└── ui.theme

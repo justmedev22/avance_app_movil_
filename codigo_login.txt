@@ -1,0 +1,171 @@
+// codigo del otro iniciar sesion
+
+
+
+@Composable
+fun PantallaCompleta() {
+    Box(modifier = Modifier.fillMaxSize()) {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(color = Color(0xFF0B253A)),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+
+        Text(
+            text = " LOGIN ",
+            fontSize = 40.sp,
+            color = Color.White,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 80.dp),
+            textAlign = TextAlign.Center
+        )
+
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 40.dp),
+            horizontalArrangement = Arrangement.Center,  // Centra horizontalmente
+            verticalAlignment = Alignment.CenterVertically  // Centra verticalmente
+        )
+        {
+            // Imagen del logo
+            Image(
+                painter = painterResource(id = R.drawable.logo),  // Reemplaza con tu imagen
+                contentDescription = "Descripción de la imagen",
+                modifier = Modifier.size(80.dp) // Ajusta el tamaño de la imagen
+            )
+
+            // Espacio entre la imagen y el texto
+            Spacer(modifier = Modifier.width(8.dp))
+
+            // Texto "Tech Gear Accesorios"
+            Column(
+
+                horizontalAlignment = Alignment.CenterHorizontally, // Centra las líneas de texto
+
+            ) {
+                // Primera línea de texto
+                Text(
+                    text = "TECH GEAR",
+                    fontSize = 20.sp,
+                    color = Color.White,
+                    fontWeight = FontWeight.Bold,
+                )
+
+                // Segunda línea de texto
+                Text(
+                    text = "ACCESSORIES",
+                    fontSize = 20.sp,
+                    color = Color.White,
+                    fontWeight = FontWeight.Bold,
+                )
+            }
+
+        }
+        Spacer(modifier = Modifier.height(50.dp)) // Este Spacer mueve la caja hacia abajo
+
+        Box(
+            modifier = Modifier // Centra la caja en la pantalla
+                .height(450.dp)
+                .width(360.dp)// Tamaño de la caja
+                .padding(top = 20.dp)
+                .background(Color.White.copy(alpha = 0.8f))
+                .border(2.dp, Color.White, RoundedCornerShape(16.dp)) // Borde azul con esquinas redondeadas
+                .clip(RoundedCornerShape(16.dp))// Redondear las esquinas del fondo y contenido
+                .zIndex(10f)  // Asegura que este encima de la base
+        )
+        {
+            // Aquí podrías colocar otros elementos, como el formulario de login
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                // creacion de variables para las notas
+                var usuario by rememberSaveable {
+                    mutableStateOf("")
+                }
+                var contraseña by rememberSaveable {
+                    mutableStateOf("")
+                }
+
+                Text(text = "!Bienvenido de nuevo!",
+                    modifier = Modifier.padding(top = 25.dp),
+                    fontSize = 18.sp ,
+                    color = Color.Black,
+                    textAlign = TextAlign.Center)
+                Spacer(modifier = Modifier.height(2.dp))
+                Text(text = "Inicia sesión para explorar accesorios.",
+                    fontSize = 18.sp ,
+                    color = Color.Black,
+                    textAlign = TextAlign.Center)
+                Spacer(modifier = Modifier.height(16.dp))
+
+                OutlinedTextField(
+                    value = usuario,
+                    onValueChange = { usuario = it },
+                    modifier = Modifier.width(320.dp),
+                    label = { Text(text = "Usuario", color = Color.Black) },
+                    maxLines = 1,
+                    singleLine = true,
+                    shape = RoundedCornerShape(20.dp),
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Text
+                    ))
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                OutlinedTextField(
+                    value = contraseña,
+                    onValueChange = { contraseña = it },
+                    modifier = Modifier.width(320.dp),
+                    label = { Text(text = "Contraseña",color = Color.Black) },
+                    maxLines = 1,
+                    shape = RoundedCornerShape(20.dp),
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Text
+
+                    ))
+
+                Spacer(modifier = Modifier.height(24.dp))
+
+                Button(
+                    onClick = { /* Acción cuando se haga clic */ },
+                    modifier = Modifier
+                        .width(300.dp)  // Ancho opcional
+                        .height(55.dp),  // Alto opcional
+                    shape = RoundedCornerShape(16.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(0xFF152C40)  // Color de fondo del botón
+                    )
+                ) {
+                    Text(text = "INICIAR SESION",
+                        fontSize = 24.sp ,
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center)
+                }
+                Spacer(modifier = Modifier.height(16.dp))
+                Row(modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceEvenly) {
+                    Text(text = "¿No tienes una cuenta?",
+                        fontSize = 12.sp ,
+                        color = Color.Black)
+
+                    Text(text = "Registrate aqui",
+                        fontSize = 12.sp ,
+                        fontWeight = FontWeight.Bold,
+                        color = Color(0xFF03A696))
+
+                }
+                // Agrega los campos y botones dentro de la caja
+            }
+        }
+        }
+    }
+}
+
+
