@@ -9,10 +9,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import pe.edu.idat.app_avance.navigation.PantallaPerfil
 import pe.edu.idat.app_avance.screens.PantallaA
 import pe.edu.idat.app_avance.screens.PantallaB
 import pe.edu.idat.app_avance.screens.PantallaInicio
 import pe.edu.idat.app_avance.screens.PantallaLogin
+import pe.edu.idat.app_avance.screens.PantallaPerfil
 import pe.edu.idat.app_avance.ui.theme.App_AvanceTheme
 
 class MainActivity : ComponentActivity() {
@@ -34,14 +36,17 @@ class MainActivity : ComponentActivity() {
                     }
 
                     // 2. Ruta para la pantalla inicial (A)
-                    composable(route = "pantallaA") {
-                        PantallaLogin(navController = navController)
+                    composable(route = "inicio") {
+                        PantallaInicio(navController = navController)
                     }
 
                     // 3. Ruta para la otra pantalla (B)
-                    composable(route = "pantallaB") {
-                        PantallaInicio(navController = navController)
+                    composable(route = "perfil") {
+                        PantallaPerfil(navController = navController)
                     }
+
+                    // del perfil hacia la pantalla inicio
+
                 }
             }
         }
@@ -54,8 +59,11 @@ class MainActivity : ComponentActivity() {
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
-    App_AvanceTheme {
-        //PantallaInicio()
+App_AvanceTheme {
+        PantallaInicio(
+            navController = TODO()
+        )
         //PantallaLogin()
-    }
+        //PantallaPerfil()
+}
 }

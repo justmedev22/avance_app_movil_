@@ -189,7 +189,7 @@ fun PantallaLogin(navController: NavController) {
 
                     Button(
                         onClick = {
-                            navController.navigate("pantallaB")
+                            navController.navigate("inicio")
                         },
                         modifier = Modifier
                             .width(300.dp)  // Ancho opcional
