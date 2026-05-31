@@ -1,10 +1,12 @@
 package pe.edu.idat.app_avance.screens
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -45,7 +47,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
+import pe.edu.idat.app_avance.components.ProductosColmun
 import pe.edu.idat.app_avance.components.ProductosLazyRow
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.size
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import pe.edu.idat.app_avance.R
 
 
 @Composable  // LA IDEA ES REDIRECCIONAR A LA PANTALLA B
@@ -77,7 +88,7 @@ fun PantallaInicio(navController: NavHostController) { // 👈 Este es tu conten
 
     var itemSeleccionado by remember { mutableStateOf(0) }
 
-    Scaffold(
+    Scaffold( modifier = Modifier.fillMaxHeight(),
         topBar = {
             TopAppBar(
                 modifier = Modifier.padding(top = 16.dp),
@@ -153,31 +164,86 @@ fun PantallaInicio(navController: NavHostController) { // 👈 Este es tu conten
 @Composable
 fun VistaInicio() {
 
+    LazyColumn(
+        modifier = Modifier
+            .fillMaxSize(),
+        contentPadding = PaddingValues(
+            start = 20.dp,
+            end = 20.dp,
+            top = 10.dp,
+            bottom = 20.dp
+        ),
+        verticalArrangement = Arrangement.spacedBy(15.dp)
+    ) {
 
-    val productos = listOf(
-        "Audífonos",
-        "Mouse Gamer",
-        "Teclado",
-        "Cargador",
-        "Smartwatch"
-    )
-    Column ( modifier = Modifier.padding(start = 20.dp, end = 20.dp) ) {
-        Text(text = "Nuevas ofertas")
-        Spacer(modifier = Modifier.height(15.dp))
-        ProductosLazyRow()
-        Spacer(modifier = Modifier.height(20.dp))
+        item {
+            Text(text = "Nuevas ofertas")
+        }
 
+        item {
+            ProductosLazyRow()
+        }
 
-        Text(text = "-50% DESCUENTO")
-        Spacer(modifier = Modifier.height(15.dp))
-        ProductosLazyRow()
-        Spacer(modifier = Modifier.height(20.dp))
+        item {
+            Text(text = "-50% DESCUENTO")
+        }
 
+        item {
+            ProductosLazyRow()
+        }
 
-        Text(text = "Productos mas vendidos")
+        item {
+            Text(text = "Productos más vendidos")
+        }
+
+           items(8)
+        { index ->
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+                elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
+                shape = RoundedCornerShape(16.dp)
+            ) {
+                Row {
+                    Image(
+                        painter = painterResource(id = R.drawable.lc_laptop),
+                        contentDescription = "oferta.nombre",
+                        modifier = Modifier
+                            .size(80.dp)
+                            .clip(RoundedCornerShape(12.dp)),
+                        contentScale = ContentScale.Crop
+                    )
+                    Spacer(modifier = Modifier.width(10.dp))
+                    Column(
+                        modifier = Modifier.padding(16.dp)
+                    ) {
+                        Text(
+                            text = "Accesorio tecnológico recomendado",
+                            modifier = Modifier.padding(top = 4.dp)
+                        )
+
+                        Text(
+                            text = "S/ ${(index + 1) * 10}.00",
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier.padding(top = 8.dp)
+                        )
+                        Button(
+                            onClick = {
+                                /* esto compra */
+                            }
+
+                        ) {
+                            Text(text = "Comprar",
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 14.sp,)
+                        }
+                    }
+                }
+
+            }
+        }
+
 
     }
-
 }
 
 
